@@ -13,9 +13,13 @@ trainerPower is the listed power displayed on the Trainer card. It increase as t
 
  attributeBaseline = 500. This is the average attribute value of a Bunicorn.
  Factor can be calculated based on the original and bonus attributes of a Bunicorn as follows:
+ 
  If the attribute has the same element with Bunicorn, factor = 1.1
+ 
  If the attribute is NEUTRAL, factor = 1.05
+ 
  Bonus attribute has factor = 1.05
+ 
  For the rest, factor = 1
 
 https://docs.bunicorn.game/battle/fighting/calculating-player-power
