@@ -18,16 +18,21 @@ If the attribute is NEUTRAL, factor = 1.05
 Bonus attribute has factor = 1.05
 For the rest, factor = 1
 
+https://docs.bunicorn.game/battle/fighting/calculating-player-power
 
-BUR Payout 
+# BUR Payout 
 The formula to determine BUR payout is as follows:
 
 Where:
 rewardGasOffset is mainly to cover the blockchain gas fee, now is set = $0.5
 rewardBaseline is a constant which is $0.4
-rewardMultiplier = √(enemyPower/1000*bunicornStar)
+
+**   rewardMultiplier = √(enemyPower/1000*bunicornStar)**
+
 If you're fighting against the same enemy, a higher bunicorn star will give you better rewards.
 These figures are subject to change in the future as the creators work to adjust the game's economic.
+
+https://docs.bunicorn.game/battle/fighting/battle-rewards
 
 # Chrome Web Store
 
@@ -41,4 +46,9 @@ On the Battle screen of Bunicorn game, after select Trainer and Bunicoin, click 
 # Disclaimer:
 This extension is using HTML manipulation to read the Bunicorn Battle information, so it is not always accurate. Use it as your own risk.
 The information provided by this extension are mainly for your reference only. You're response for your own choice in the battle.
+
+# How to Support
+BNB: 0x12E0922294552EA9541F3c33f4EE42A437Bb033d
+BUNI 0x12E0922294552EA9541F3c33f4EE42A437Bb033d
+BUR 0x12E0922294552EA9541F3c33f4EE42A437Bb033d
 
