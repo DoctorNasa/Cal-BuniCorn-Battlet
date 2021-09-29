@@ -16,7 +16,7 @@ var factor_neutral = 1.05,
 
 $(document).on('click', 'div.enemy-container', function () {
     // console.log('enemy-container clicked');
-    calculatorRate();
+    calculatorWinRate();
 })
 
 // $('body').on('DOMSubtreeModified', 'div.list-enemies', function () {
@@ -76,7 +76,7 @@ function getBuniElement() {
     return _buni_element;
 }
 
-function calculatorRate() {
+function calculatorWinRate() {
     try {
         trainPower = trainerSelected();
         var buni_html_elm = $("img.selected-trainner-image");
@@ -91,35 +91,35 @@ function calculatorRate() {
 
             // console.log('buni_css_info_right_elm: ' + buni_css_info_right_elm);
             // console.log('att_right_val_text: ' + att_right_val_text);
-
-            var one_attr_element = '', one_attr_val = 0, sum_pw = 0;
+            // If Bunicorn has more Attribute us for Element of html for calculator
+            var one_attr_elm = '', one_attr_val = 0, sum_pw = 0;
 
             if (buni_css_info_right_elm.indexOf('fire') != -1) {
-                one_attr_element = 'fire';
-                att_right_val_text = att_right_val_text.toLowerCase();
+                one_attr_elm = 'fire';
+                att_right_val_text = att_right_val_text.toLowerCase();  // lowercase for replace
                 one_attr_val = att_right_val_text.replace('fire +', '');
             }
             if (buni_css_info_right_elm.indexOf('air') != -1) {
-                one_attr_element = 'air';
+                one_attr_elm = 'air';
                 one_attr_val = att_right_val_text.replace('air +', '');
             }
             if (buni_css_info_right_elm.indexOf('water') != -1) {
-                one_attr_element = 'water';
+                one_attr_elm = 'water';
                 one_attr_val = att_right_val_text.replace('water +', '');
             }
             if (buni_css_info_right_elm.indexOf('earth') != -1) {
-                one_attr_element = 'earth';
+                one_attr_elm = 'earth';
                 one_attr_val = att_right_val_text.replace('earth +', '');
             }
             if (buni_css_info_right_elm.indexOf('neutral') != -1) {
-                one_attr_element = 'neutral';
+                one_attr_elm = 'neutral';
                 one_attr_val = att_right_val_text.replace('neutral +', '');
             }
             //////////////// one_attr_val
             // console.log('buni_one_element_val: ' + one_attr_val);
-            if (one_attr_element == buni_element) {
+            if (one_attr_elm == buni_element) {
                 sum_pw += one_attr_val * factor_Duplicate;
-            } else if (one_attr_element == 'neutral') {
+            } else if (one_attr_elm == 'neutral') {
                 sum_pw += one_attr_val * factor_neutral;
             } else {
                 sum_pw += one_attr_val * factor_all;
@@ -127,13 +127,12 @@ function calculatorRate() {
             // console.log('sum_pw= ' + sum_pw);
             /// bunicornPowerMultiplier
             bunicornPowerMultiplier = 1 + sum_pw / attributeBaseline;
-            // bunicornPowerMultiplier = Math.round(bunicornPowerMultiplier);
             // console.log('bunicornPowerMultiplier: ' + bunicornPowerMultiplier);
 
             // playerBasePower
             playerBasePower = trainPower * bunicornPowerMultiplier;
             // console.log('playerBasePower:' + playerBasePower);
-            // var buni_html_info_left = $("div.info-selected-bunicorn .left-info");
+            // var buni_html_info_left = $("div.info-selected-bunicorn .left-info");   // I not hava more Attribute
             var playPower_min = playerBasePower * 0.9;
             playPower_min = Math.round(playPower_min);
             var playPower_max = playerBasePower * 1.1;
@@ -148,7 +147,7 @@ function calculatorRate() {
                 // if element not exits
                 $('<div id="info-win-lose-ext" class="elements info-win-lose-ext"></div>').insertBefore('div.list-enemies');
             }
-            $(list_enemy).each(function (index) {
+            $(list_enemy).each(function (idx) {
                 // console.log(index + ": " + $(this).html());
                 var emy_power = $(this).find("div.encounter-power").text();
                 emy_power = emy_power.toLowerCase();
@@ -164,11 +163,10 @@ function calculatorRate() {
                 var w = 0, l = 0;
                 for (let pPow = playPower_min; pPow <= playPower_max; pPow++) {
                     for (let ePow = emy_Power_min; ePow <= emy_Power_max; ePow++) {
-                        if (pPow > ePow) { w++ } else { l++ }
+                        if (pPow > ePow) { w++ } else { l++ };
                     }
                 }
-                var totalWar = (playPower_max - playPower_min + 1) * (emy_Power_max - emy_Power_min + 1);
-
+                // var totalBattle = (playPower_max - playPower_min + 1) * (emy_Power_max - emy_Power_min + 1);    // totalBattle = win + lose
                 // console.log('totalWar: ' + totalWar);
                 // console.log('Win: ' + w);
                 // console.log('lose: ' + l);
@@ -176,24 +174,23 @@ function calculatorRate() {
                 // console.log('Rate: ' + winRate + "%");
                 // console.log('---------End-----------');
                 // console.log("index [" + index + "] xp: " + xp);
-                if (!$('#info-win-lose-ext-' + index + '').length) {
-                    $('div#info-win-lose-ext').append('<div id="info-win-lose-ext-' + index + '" class="one-info"></div>');
+                if (!$('#info-win-lose-ext-' + idx + '').length) {
+                    $('div#info-win-lose-ext').append('<div id="info-win-lose-ext-' + idx + '" class="one-info"></div>');
                 }
-                $('div#info-win-lose-ext-' + index + '').html('');
+                $('div#info-win-lose-ext-' + idx + '').html('');  // Remove old calculator Rate
                 var css_rate = 'low-win'
                 if (winRate > 90) {
                     css_rate = 'height-win'
                 }
-                // $('div#info-win-lose-ext-' + index + '').append('<span><b>You Pow:</b> ' + playPower_min + ' -> ' + playPower_max + '</span><span><b>Enemy Pow:</b> ' + emy_Power_min + ' -> ' + emy_Power_max + '</span><span><b>Win Rate:</b> ' + winRate + '% </span>');
-                $('div#info-win-lose-ext-' + index + '').append('<span><b>You Pow: </b>' + playPower_min + ' -> ' + playPower_max + '</span>');
-                $('div#info-win-lose-ext-' + index + '').append('<span><b>Enemy Pow: </b>' + emy_Power_min + ' -> ' + emy_Power_max + '</span>');
-                $('div#info-win-lose-ext-' + index + '').append('<span><b>Win Rate: </b><el class="' + css_rate + '">' + winRate + '%</el> +<el style="color:#28aafd">' + xp + '</el></span>');
+                $('div#info-win-lose-ext-' + idx + '').append('<span><b>You Pow: </b>' + playPower_min + ' -> ' + playPower_max + '</span>');
+                $('div#info-win-lose-ext-' + idx + '').append('<span><b>Enemy Pow: </b>' + emy_Power_min + ' -> ' + emy_Power_max + '</span>');
+                $('div#info-win-lose-ext-' + idx + '').append('<span><b>Win Rate: </b><el class="' + css_rate + '">' + winRate + '%</el> +<el style="color:#28aafd">' + xp + '</el></span>');
                 if (buni_star != undefined && buni_star > 0) {
                     var rewardGasOffset = 0.5, rewardBaseline = 0.4;
                     var rewardMultiplier = Math.sqrt(emy_power / 1000 * buni_star);
                     var reward = rewardGasOffset + rewardBaseline * rewardMultiplier;
                     reward = reward.toFixed(2);
-                    $('div#info-win-lose-ext-' + index + '').append('<span><b>Reward: ~</b>' + reward + '$</el> <el style="color:gold">(' + buni_star + '&#x2606)</el></span>');
+                    $('div#info-win-lose-ext-' + idx + '').append('<span><b>Reward: ~</b>' + reward + '$</el> <el style="color:gold">(' + buni_star + '&#x2606)</el></span>');
                 }
             });
 

@@ -1,24 +1,24 @@
 chrome.extension.onMessage.addListener(
     function (request) {
         switch (request.type) {
-            case 'add-song':
-                addSong(data);
+            case 'a':
+                process(data);
                 break;
-            case 'remove-song':
+            case 'b':
                 break;
         }
     });
 
-function addSong(data) {
-    var songs = getSongs();
-    songs.push(data);
-    localStorage.songs = JSON.stringify(songs)
+function process(require) {
+    var oldData = getLocalData();
+    oldData.push(require);
+    localStorage.mydata = JSON.stringify(oldData)
 }
 
-function getSongs() {
-    if (!localStorage.songs) {
-        localStorage.songs = JSON.stringify([]);
+function getLocalData() {
+    if (!localStorage.mydata) {
+        localStorage.mydata = JSON.stringify([]);
     }
 
-    return JSON.parse(localStorage.songs);
+    return JSON.parse(localStorage.mydata);
 }
