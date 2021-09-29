@@ -9,7 +9,7 @@ Player Base Power is the variable used to determine the range of enemy power rol
 Where:
 trainerPower is the listed power displayed on the Trainer card. It increase as the trainer is leveled up especially once the trainer passed the fusion checkpoints. For the list of trainer power and the corresponding level, please see this.
 
-bunicornPowerMultiplier = 1 + SUM(attribute * factor) / attributeBaseline
+  **bunicornPowerMultiplier = 1 + SUM(attribute * factor) / attributeBaseline**
 
 attributeBaseline = 500. This is the average attribute value of a Bunicorn.
 Factor can be calculated based on the original and bonus attributes of a Bunicorn as follows:
