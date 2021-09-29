@@ -25,6 +25,7 @@ The formula to determine BUR payout is as follows:
 
 Where:
 rewardGasOffset is mainly to cover the blockchain gas fee, now is set = $0.5
+
 rewardBaseline is a constant which is $0.4
 
 **   rewardMultiplier = √(enemyPower/1000*bunicornStar)**
