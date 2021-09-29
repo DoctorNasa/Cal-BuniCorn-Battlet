@@ -8,15 +8,16 @@ Player Base Power is the variable used to determine the range of enemy power rol
 
 Where:
 trainerPower is the listed power displayed on the Trainer card. It increase as the trainer is leveled up especially once the trainer passed the fusion checkpoints. For the list of trainer power and the corresponding level, please see this.
+
 bunicornPowerMultiplier = 1 + SUM(attribute * factor) / attributeBaseline
+
 attributeBaseline = 500. This is the average attribute value of a Bunicorn.
 Factor can be calculated based on the original and bonus attributes of a Bunicorn as follows:
 If the attribute has the same element with Bunicorn, factor = 1.1
 If the attribute is NEUTRAL, factor = 1.05
 Bonus attribute has factor = 1.05
 For the rest, factor = 1
-bunicornPowerMultiplier means that if your trainer power is higher (higher level), the attributes can contribute more to the total playerBasePower. For example, if you use an enhanced 5-star Bunicorn with a level 20 trainer will be much better than a level 10 trainer.
-After calculating the player base power, we apply a ±10% to determine the range of values for enemy power values.
+
 
 BUR Payout 
 The formula to determine BUR payout is as follows:
