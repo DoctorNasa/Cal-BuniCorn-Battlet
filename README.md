@@ -9,26 +9,26 @@ Player Base Power is the variable used to determine the range of enemy power rol
 Where:
 trainerPower is the listed power displayed on the Trainer card. It increase as the trainer is leveled up especially once the trainer passed the fusion checkpoints. For the list of trainer power and the corresponding level, please see this.
 
-  **bunicornPowerMultiplier = 1 + SUM(attribute * factor) / attributeBaseline**
+   **bunicornPowerMultiplier = 1 + SUM(attribute * factor) / attributeBaseline**
 
-attributeBaseline = 500. This is the average attribute value of a Bunicorn.
-Factor can be calculated based on the original and bonus attributes of a Bunicorn as follows:
-If the attribute has the same element with Bunicorn, factor = 1.1
-If the attribute is NEUTRAL, factor = 1.05
-Bonus attribute has factor = 1.05
-For the rest, factor = 1
+ attributeBaseline = 500. This is the average attribute value of a Bunicorn.
+ Factor can be calculated based on the original and bonus attributes of a Bunicorn as follows:
+ If the attribute has the same element with Bunicorn, factor = 1.1
+ If the attribute is NEUTRAL, factor = 1.05
+ Bonus attribute has factor = 1.05
+ For the rest, factor = 1
 
 https://docs.bunicorn.game/battle/fighting/calculating-player-power
 
 # BUR Payout 
 The formula to determine BUR payout is as follows:
 
-Where:
-rewardGasOffset is mainly to cover the blockchain gas fee, now is set = $0.5
+ Where:
+ rewardGasOffset is mainly to cover the blockchain gas fee, now is set = $0.5
 
-rewardBaseline is a constant which is $0.4
+ rewardBaseline is a constant which is $0.4
 
-**   rewardMultiplier = √(enemyPower/1000*bunicornStar)**
+   **rewardMultiplier = √(enemyPower/1000*bunicornStar)**
 
 If you're fighting against the same enemy, a higher bunicorn star will give you better rewards.
 These figures are subject to change in the future as the creators work to adjust the game's economic.
