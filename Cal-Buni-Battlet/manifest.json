@@ -1,6 +1,6 @@
 {
     "name": "Cal-BuniCorn-Battlet",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "manifest_version": 2,
     "description": "Extension calculator for BuniCorn Game",
     "icons": {
@@ -35,7 +35,5 @@
         }
     ],
     "permissions": [
-        "clipboardWrite",
-        "storage"
     ]
 }
